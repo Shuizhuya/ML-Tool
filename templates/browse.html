@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Browsing Data{% endblock %}
+{% block content %}
+    <h1>浏览数据(前十行)</h1>
+    {{table | safe}}
+    <a href="/">返回首页</a>
+    <h2>统计信息</h2>
+    <table border="1">
+        <tr>
+            <th>列名</th>
+            <th>类型</th>
+            <th>均值</th>
+            <th>标准差</th>
+            <th>最小值</th>
+            <th>最大值</th>
+            <th>缺失值</th>
+        </tr>
+        {% for col in stats %}
+        <tr>
+            <td>{{ col.name }}</td>
+            <td>{{ col.type }}</td>
+            {% if col.type == "数值" %}
+                <td>{{ col.mean }}</td>
+                <td>{{ col.std }}</td>
+                <td>{{ col.min }}</td>
+                <td>{{ col.max }}</td>
+                <td>{{ col.missing }}</td>
+            {% else %}
+                <td colspan="5">唯一值数量：{{ col.unique }} 缺失值数量：{{ col.missing }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/text_prepare" class="btn">文本数据集处理-></a>
+    <a href="/preprocess" class="btn">数据预处理-></a>
+{% endblock %}

@@ -1,0 +1,23 @@
+# 虚拟环境
+.venv/
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 运行时产物（上传的数据集 / 训练出的模型版本）
+uploads/
+models/
+
+# 旧版单文件模型产物（已被 models/ 版本化取代）
+model.pth
+x_test.csv
+y_test.csv
+
+# 原始数据集残留目录
+iris/
+
+# 练习/实验用的临时文件
+1.py
+tt.py
+text.js

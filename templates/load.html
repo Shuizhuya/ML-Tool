@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}加载历史模型{% endblock %}
+{% block content %}
+    <h1>加载历史模型</h1>
+    <form method="POST">
+        <p>请选择需要加载的模型:</p>
+        {% for f in ts %}
+        <label><input type="radio" name="ts" value="{{ f }}">{{ names.get(f, f) }}</label><br>
+        {% endfor %}
+        <button type="submit">提交</button>
+    </form>
+    {% for f in ts %}
+    <form method="post" action="/delete" class="inline-form">
+        <input type="hidden" name="ts" value="{{ f }}">
+        <button type="submit" class="danger" onclick="return confirm('确定删除这个版本吗?')">删除 {{ names.get(f, f) }}模型</button>
+    </form>
+    {% endfor %}
+{% endblock %}

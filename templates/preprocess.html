@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}选列{% endblock %}
+{% block content %}
+    <h1>选择标签列与特征列</h1>
+    <form method="POST">
+        <p>请选择标签列(y):</p>
+        {% for col in columns %}
+            <label>
+                <input type="radio" name="label_col" value="{{ col }}">
+                {{ col }}
+            </label><br>
+        {% endfor %}
+        <p>请选择特征列(x):</p>
+        {% for col in columns %}
+            <label>
+                <input type="checkbox" name="feature_cols" value="{{ col }}">
+                {{ col }}
+            </label><br>
+        {% endfor %}
+        <button type="submit">确认</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}数据预处理{% endblock %}
+{% block content %}
+    <h1>数据预处理</h1>
+    <form method="POST">
+        <p>选择要归一化处理的数值列：</p>
+        {% for col in numeric_cols %}
+        <label><input type="checkbox" name="norm_cols" value="{{ col }}">{{ col }}</label>
+        {% endfor %}
+        <p>选择要进行独热编码的分类列：</p>
+        {% for col in category_cols %}
+        <label><input type="checkbox" name="cate_cols" value="{{ col }}">{{ col }}</label>
+        {% endfor %}
+        <p>选择归一化的方法：</p>
+        <label><input type="radio" name="method" value="1">线性缩放</label>
+        <label><input type="radio" name="method" value="2">Z-score</label>
+        <label><input type="radio" name="method" value="3">对数缩放</label>
+        <p>缺失值处理方法</p>
+        <select name="missing_way">
+            <option value="drop">删除含缺失值的行</option>
+            <option value="mean">数值取均值 / 分类取众数</option>
+            <option value="median">数值取中位数 / 分类取众数</option>
+        </select>
+        <button type="submit">确认</button>
+    </form>
+{% endblock %}

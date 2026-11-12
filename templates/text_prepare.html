@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}文本选列{% endblock %}
+{% block content %}
+    <h1>文本数据选列</h1>
+    <form method="POST">
+        <p>请选择标签列(y):</p>
+        {% for col in columns %}
+            <label>
+                <input type="checkbox" name="y_series" value="{{ col }}">
+                {{ col }}
+            </label>
+        {% endfor %}
+        <p>请选择特征列(x):</p>
+        {% for col in columns %}
+            <label>
+                <input type="checkbox" name="x_df" value="{{ col }}">
+                {{ col }}
+            </label>
+        {% endfor %}
+        <button type="submit">确认</button>
+    </form>
+{% endblock %}

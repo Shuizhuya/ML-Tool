@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}训练{% endblock %}
+{% block content %}
+    <form method="POST">
+        {% if numeric_label %}
+        <label>任务类型：
+            <select name="task_type">
+                <option value="classification" {% if task_type == "classification"%} selected {% endif %}>分类</option>
+                <option value="regression" {% if task_type == "regression"%} selected {% endif %}>回归</option>
+            </select>
+        </label>
+        {% else %}
+        <p>检测为分类任务</p>
+        {% endif %}
+        <label>训练次数 epochs(默认50)：
+            <input type="number" name="epochs" value="50" min="1">
+        </label>
+        <label>学习率 learning rate(默认0.001)：
+            <input type="number" name="lr" value="0.001" step="0.001" min="0">
+        </label>
+        <label>隐藏层超参数 hidden1(默认64)：
+            <input type="number" name="hidden1" value="64" min="1">
+        </label>
+        <label>隐藏层超参数 hidden2(默认32)：
+            <input type="number" name="hidden2" value="32" min="1">
+        </label>
+        <button type="submit">开始训练</button>
+    </form>
+
+    {% if history %}
+    <h2>训练结果</h2>
+    <table border="1">
+        <tr>
+            <th>Epoch</th>
+            <th>训练 LOSS</th>
+            <th>验证 LOSS</th>
+        </tr>
+        {% for h in history %}
+        <tr>
+            <td>{{ h.epoch }}</td>
+            <td>{{ h.train_loss }}</td>
+            <td>{{ h.val_loss }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <form method="post" action="/name">
+        <input type="hidden" name="ts" value="{{ ts }}">
+        <input type="text" name="name" placeholder="给该模型起名">
+        <button type="submit">保存</button>
+    </form>
+    {% if message %}
+        {% if train_acc and val_acc %}
+        <p>训练集的准确率为:{{ train_acc }}; 验证集的准确率为:{{ val_acc }}</p>
+        {% else %}
+        <p>训练集的loss为:{{ train_loss }}; 验证集的loss为:{{ val_loss }}</p>
+        {% endif %}
+        <p class="warning">注意!{{ message }}</p>
+    {% endif %}
+    <a href="/evaluate" class="btn">去评估-></a>
+{% endblock %}

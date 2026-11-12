@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}结果预测{% endblock %}
+{% block content %}
+    <h1>结果预测</h1>
+    {% if is_text %}
+        {% if pred_y is none %}
+        <form method="post">
+            <p>请输入文本:</p>
+            <label><input type="text" name="text" value="{{ text }}"></label><br>
+            <button type="submit">确认</button>
+        </form>
+        {% else %}
+        <p class="result">输出结果预测为:<strong>{{ pred_y }}</strong></p>
+        <a href="/predict" class="btn">再预测一次</a>
+        {% endif %}
+    {% else %}
+        {% if pred_y is none %}
+        <form method="post">
+            {% for feature in feature_names %}
+                <label>{{ feature }}: <input type="number" name="f{{ loop.index }}" step="any"></label><br> <!-- step="any" 可接受小数 -->
+            {% endfor %}
+            <button type="submit">确认</button>
+        </form>
+        {% else %}
+        <p class="result">结果预测为:<strong>{{ pred_y }}</strong></p>
+        <a href="/predict" class="btn">再预测一次</a>
+        {% endif %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="hero">
+        <h1>机器学习工具箱</h1>
+        <p>上传数据集，完成「预处理 → 训练 → 评估 → 预测」全流程</p>
+    </div>
+    <form method="post" enctype="multipart/form-data" class="upload">
+        <p>选择 CSV 数据集文件：</p>
+        <input type="file" name="dataset" accept=".csv">
+        <button type="submit">上传数据集</button>
+    </form>
+    <p class="divider">或者</p>
+    <a href="/load" class="btn center">加载历史模型</a>
+{% endblock %}

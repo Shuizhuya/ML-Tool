@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}MLTool{% endblock %}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <nav>
+            <span class="brand">ML Tool</span>
+            <a href="/">上传数据</a>
+            <a href="/browse">浏览数据</a>
+            <a href="/preprocess">选列</a>
+            <a href="/normalize">数据预处理</a>
+            <a href="/text_prepare">文本预处理</a>
+            <a href="/train">训练</a>
+            <a href="/evaluate">评估</a>
+            <a href="/load">加载历史模型</a>
+            <a href="/predict">结果预测</a>
+        </nav>
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+    </body>
+</html>

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}数据预处理结果{% endblock %}
+{% block content %}
+    <h1>数据预处理完成</h1>
+    <p>训练集处理完成：{{ train_shape }}</p>
+    <p>测试集处理完成：{{ test_shape }}</p>
+    <p>验证集处理完成：{{ val_shape }}</p>
+    <a href="/train" class="btn">去训练模型-></a>
+{% endblock %}

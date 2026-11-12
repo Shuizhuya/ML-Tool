@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}评测部分{% endblock %}
+{% block content %}
+    <h1>评估结果</h1>
+    {% if is_classification %}
+    <table border="1">
+        <tr>
+            <th>准确率</th>
+            <th>精确率</th>
+            <th>召回率</th>
+            <th>F1得分</th>
+        </tr>
+        <tr>
+            <td>{{ accuracy }}</td>
+            <td>{{ precision }}</td>
+            <td>{{ recall }}</td>
+            <td>{{ f1 }}</td>
+        </tr>
+    </table>
+    <h2>混淆矩阵</h2>
+    <pre>{{ confusion }}</pre>
+    {% else %}
+    <table border="1">
+        <tr>
+            <th>均方误差 MSE</th>
+            <th>均方根误差 RMSE</th>
+            <th>平均绝对误差 MAE</th>
+            <th>决定系数 R2</th>
+        </tr>
+        <tr>
+            <td>{{ mse }}</td>
+            <td>{{ rmse }}</td>
+            <td>{{ mae }}</td>
+            <td>{{ r2 }}</td>
+        </tr>
+    </table>
+    {% endif %}
+    <p>共{{ error_count }}个预测出错了</p>
+    {% if errors %}
+    <table border="1">
+        <tr>
+            <th>预测出错的数据 X</th>
+            <th>预测错误的结果 Y</th>
+            <th>正确的结果 Y_true</th>
+        </tr>
+        {% for x, pred, real in errors %}
+        <tr>
+            <td>{{ x }}</td>
+            <td>{{ pred }}</td>
+            <td>{{ real }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}
