@@ -15,11 +15,11 @@
 
 ## 快速开始
 
-环境：Python 3.13+（Windows 11 已验证）
+环境：Python 3.13+
 
 ```bash
-git clone https://github.com/<你的用户名>/<仓库名>.git
-cd <仓库名>
+git clone https://github.com/Shuizhuya/ML-Tool.git
+cd ML-Tool
 python -m venv .venv
 .venv\Scripts\activate        # Windows；macOS/Linux 用 source .venv/bin/activate
 pip install -r requirements.txt
@@ -63,8 +63,3 @@ python app.py
 ## 技术栈
 
 Flask / Jinja2 / pandas / scikit-learn / PyTorch / NumPy / joblib
-
-## 开发记录
-
-- [CLAUDE.md](CLAUDE.md)：开发决策、踩坑记录、待办方向
-- [学习进度.md](学习进度.md)：学习过程记录
